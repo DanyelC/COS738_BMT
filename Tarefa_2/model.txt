@@ -1,0 +1,8 @@
+O modelo gerado tem n colunas e m linhas. A primeira coluna trata sobre o Token, em que cada linha apresenta um termo usado.
+As colunas seguintes se relacionam com o documento analisado, sendo as linhas relacionadas aos termos usados.
+
+Token       ;  Número_Documento(n-1) ; ...; Número_Documento(0)
+Termo(m)    ;         W(n-1, m)      ; ...;        W(0, m)      
+Termo(m-1)  ;        W(n-1, m-1)     ; ...;       W(0, m-1)     
+    ...     ;           ...          ; ...;          ...        
+Termo(0)    ;         W(n-1, 0)      ; ...;       W(0, 0)     
