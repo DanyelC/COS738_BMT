@@ -106,7 +106,7 @@ def get_queries(xml, queries_file_path):
                         query_number = int(element.text)
                     elif element.tag == "QueryText":
                         query_text = element.text.upper()
-                        query_text = query_text.replace('\n  ', '')
+                        query_text = query_text.replace('\n', '')
                         query_text = query_text.replace(';', '')
 
                 queries_file.write(f"{query_number};{query_text}\n")

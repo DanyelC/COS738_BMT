@@ -82,24 +82,38 @@ def insert_queries(model, queries):
     return model
 
 
+def sim_cos(query, document, model):
+    """Retorna a similaridade de cossenos entre uma consulta e um documento, dado um modelo em que ambos estão presentes."""
+
+
+
 
 def get_ranking(model, queries):
     logging.basicConfig(filename='../logs/busca.log', filemode='a', format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info("Rankeando consultas...")
 
+# Temos e modelo e adicionamos as consultas
     model = insert_queries(model, queries)
-    ranking = pd.DataFrame(index=model.columns[:-99])
+    ranking = pd.DataFrame()
+    shape = (model.shape[1] - 99, 1)
 
     for query in queries.index:
-        q = f"Q{query}"
-        ranking[q] = 0.0
-        if str(query) in model.index:
-            q_vector = model.loc[str(query)].values
-            q_norm = np.linalg.norm(q_vector)
-            qxd_norm = np.linalg.norm(model.iloc[:, :-99].values, axis=0)
-            dot_product = np.dot(q_vector, model.iloc[:, :-99].values)
-            ranking[q] = dot_product / (q_norm * qxd_norm)
+        q_query = f"Q{query}"
+        zeros = pd.DataFrame(np.zeros(shape), index=model.columns[:-99], columns=[q_query])
+        ranking = pd.concat([ranking, zeros], axis=1)
+        
+        # Iterar pelas colunas de documento do modelo, retirando as de query
+        for document in model.columns[:-99]:
+            q = model[str(q_query)].to_numpy()
+            d = model[str(document)].to_numpy() 
 
+            q_dot_d = np.dot(q, d)
+            qxd = np.linalg.norm(q) * np.linalg.norm(d)
+            
+            result =  q_dot_d / qxd
+
+            ranking.loc[document, q_query] = result
+    
     return ranking
 
 
