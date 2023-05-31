@@ -1,11 +1,8 @@
 import logging
 import configparser
-import numpy as np
 from datetime import datetime,timedelta
-import nltk
 from nltk.tokenize import wordpunct_tokenize
 from nltk.corpus import stopwords
-from nltk.stem.porter import PorterStemmer
 from xml.etree import ElementTree as ET 
 
 def get_conf(file='../config/GLI.cfg'):
@@ -24,35 +21,27 @@ def get_conf(file='../config/GLI.cfg'):
         logging.info('Iniciando leitura do arquivo de configuracao.')
         cfg_parser = configparser.RawConfigParser()
         cfg_parser.readfp(open(file))
-        try:
-            if cfg_parser.options('STEMMER'):
-                stemmer = True
-        except:
-            stemmer = False
         files_to_read = cfg_parser.options('CONF')
         files_to_read = [cfg_parser.get('CONF', instruction) for instruction in files_to_read if instruction.startswith('LEIA'.lower())]
         file_to_write = cfg_parser.get('CONF', 'ESCREVA')
 
         logging.info('Arquivo de configuracao lido com sucesso.')
-        return files_to_read, file_to_write, stemmer
+        return files_to_read, file_to_write
     
     except Exception as e:
         logging.error(f'Ocorreu o seguinte erro ao ler o arquivo de configuracao: {str(e)}')
 
 
 
-def frequency(text, record_num, stemmer):
+def frequency(text, record_num):
     tokens = wordpunct_tokenize(text)
     stop_en = set(stopwords.words("english"))
-    stemmer = PorterStemmer() if stemmer else None
     frequency_dict = {}
 
     for word in tokens:
         word = word.lower()
         if word in stop_en or not word.isalpha() or len(word) < 3:
             continue
-        if stemmer:
-            word = stemmer.stem(word)
         word = word.upper()
         if word in frequency_dict:
             frequency_dict[word].append(record_num)
@@ -62,7 +51,7 @@ def frequency(text, record_num, stemmer):
     return frequency_dict
 
 
-def get_inverted_list(read_files, stemmer):
+def get_inverted_list(read_files):
     logging.basicConfig(filename='../logs/gli.log', filemode='a',format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info("Iniciando criação da lista invertida")
     inverted_list = {}
@@ -82,7 +71,7 @@ def get_inverted_list(read_files, stemmer):
             file_records[record_num] = text
 
         for record_num, text in file_records.items():
-            record_dict = frequency(text, record_num, stemmer)
+            record_dict = frequency(text, record_num)
             for token, record_list in record_dict.items():
                 inverted_list.setdefault(token, []).extend(record_list)
 
@@ -96,7 +85,7 @@ def get_inverted_list(read_files, stemmer):
     return inverted_list
 
 
-def get_all_files(read_files, path, stemmer):
+def get_all_files(read_files, path):
     """
     Função para criar o arquivo de escrita.
     :param read_files: nome dos arquivos a serem lidos
@@ -105,7 +94,7 @@ def get_all_files(read_files, path, stemmer):
     logging.basicConfig(filename='../logs/gli.log', filemode='a', format='%(asctime)s - %(message)s', level=logging.INFO, force=True)
     logging.info("Iniciando a criação do arquivo da lista invertida.")
 
-    inverted_list = get_inverted_list(read_files, stemmer)
+    inverted_list = get_inverted_list(read_files)
     tokens = inverted_list.keys()
 
     with open(path, 'w') as w_file:

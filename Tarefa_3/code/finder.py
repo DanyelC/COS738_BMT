@@ -82,11 +82,6 @@ def insert_queries(model, queries):
     return model
 
 
-def sim_cos(query, document, model):
-    """Retorna a similaridade de cossenos entre uma consulta e um documento, dado um modelo em que ambos estão presentes."""
-
-
-
 
 def get_ranking(model, queries):
     logging.basicConfig(filename='../logs/busca.log', filemode='a', format='%(asctime)s - %(message)s', level=logging.INFO, force=True)

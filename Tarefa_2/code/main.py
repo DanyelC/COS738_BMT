@@ -8,7 +8,6 @@ import finder
 import pandas as pd
 from nltk.tokenize import wordpunct_tokenize
 from nltk.corpus import stopwords
-from nltk.stem.porter import PorterStemmer
 
 
 
@@ -30,15 +29,15 @@ if __name__ == '__main__':
     query_proc.get_queries(xml, query)
     query_proc.get_expected(xml, expected_result)
 
-    read_files, write_file, stemmer = list_generator.get_conf("../config/GLI.cfg")
+    read_files, write_file = list_generator.get_conf("../config/GLI.cfg")
 
-    list_generator.get_all_files(read_files, write_file, stemmer)
+    list_generator.get_all_files(read_files, write_file)
 
     tokens, model = index.get_conf("../config/INDEX.cfg")
     # Gerando modelo através da matriz termo documento que foi construída com a lista invertida
     index.save_model(model, tokens, type_tf)
 
-    model_file, queries_file, results_file, stemmer = finder.get_conf("../config/BUSCA.cfg")
+    model_file, queries_file, results_file = finder.get_conf("../config/BUSCA.cfg")
     # Lê o modelo na memória
     model = pd.read_csv(model_file, sep=";")
     model.set_index(["Token"], inplace=True)
@@ -59,12 +58,7 @@ if __name__ == '__main__':
                 continue
             elif len(word) < 3:
                 continue
-            if stemmer:
-                stemmer = PorterStemmer()
-                word_stemmed = stemmer.stem(word)
-                processed_text.append(word_stemmed.upper())
-            else:
-                processed_text.append(word.upper())
+            processed_text.append(word.upper())
         
         queries.at[number, "QueryText"] = processed_text
     

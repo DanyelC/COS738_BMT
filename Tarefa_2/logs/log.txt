@@ -14,3 +14,19 @@
 2023-05-31 10:56:10,339 - INFO - Iniciando operacao de captura das configuracões.
 2023-05-31 10:56:10,339 - INFO - Iniciando leitura do arquivo de configuracao.
 2023-05-31 10:56:10,341 - INFO - Arquivo de configuracao lido com sucesso.
+2023-05-31 12:03:44,732 - INFO - Iniciando execucao do programa em 2023-05-31 12:03:44.731722".
+2023-05-31 12:03:44,732 - INFO - Iniciando operacao de captura das configuracões.
+2023-05-31 12:03:44,733 - INFO - Iniciando leitura do arquivo de configuracao.
+2023-05-31 12:03:44,734 - INFO - Arquivo de configuracao lido com sucesso.
+2023-05-31 12:03:44,734 - INFO - Iniciando operacao para buscar elementos no arquivo "cfquery.xml".
+2023-05-31 12:03:44,734 - INFO - Iniciando leitura do arquivo XML.
+2023-05-31 12:03:44,753 - INFO - Arquivo XML lido com sucesso.
+2023-05-31 12:03:44,754 - INFO - Iniciando operacao para realizar e salvar as consultas no arquivo "query.csv".
+2023-05-31 12:03:44,757 - INFO - Consultas salvas com sucesso no arquivo "../result/query.csv".
+2023-05-31 12:03:44,757 - INFO - Quantidade de dados lida: 99
+2023-05-31 12:03:44,757 - INFO - Tempo medio de processamento por consulta: 0.00 segundos
+2023-05-31 12:03:44,757 - INFO - Iniciando operacao para obter e salvar os resultados esperados no arquivo "expected_results.csv".
+2023-05-31 12:03:44,779 - INFO - Resultados esperados salvos com sucesso no arquivo "../result/expected_results.csv".
+2023-05-31 12:03:44,779 - INFO - Iniciando operacao de captura das configuracões.
+2023-05-31 12:03:44,780 - INFO - Iniciando leitura do arquivo de configuracao.
+2023-05-31 12:03:44,781 - INFO - Arquivo de configuracao lido com sucesso.

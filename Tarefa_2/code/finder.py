@@ -12,7 +12,6 @@ def get_conf(file):
     return str model: caminho para o arquivo do modelo 
     return srt queries_file: caminho para o arquivo das consultas 
     return str results: string contendo o caminho do arquivo a ser escrito
-    return bool stemmer: flag de stemmer
     """
     logging.basicConfig(filename='../logs/log.txt', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -23,17 +22,12 @@ def get_conf(file):
         logging.info('Iniciando leitura do arquivo de configuracao.')
         cfg_parser = configparser.RawConfigParser()
         cfg_parser.readfp(open(file))
-        try:
-            if cfg_parser.options('STEMMER'):
-                stemmer = True
-        except:
-            stemmer = False
         model = cfg_parser.get('CONF', 'MODELO')
         queries_file = cfg_parser.get('CONF', 'CONSULTAS')
         results = cfg_parser.get('CONF', 'RESULTADOS')
 
         logging.info('Arquivo de configuracao lido com sucesso.')
-        return model, queries_file, results, stemmer
+        return model, queries_file, results
     
     except Exception as e:
         logging.error(f'Ocorreu o seguinte erro ao ler o arquivo de configuracao: {str(e)}')
@@ -80,12 +74,6 @@ def insert_queries(model, queries):
     logging.info(f"Consultas inseridas no modelo. Tempo decorrido: {time_taken}")
 
     return model
-
-
-def sim_cos(query, document, model):
-    """Retorna a similaridade de cossenos entre uma consulta e um documento, dado um modelo em que ambos estão presentes."""
-
-
 
 
 def get_ranking(model, queries):

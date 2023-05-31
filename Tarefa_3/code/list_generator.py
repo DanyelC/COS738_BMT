@@ -2,7 +2,6 @@ import logging
 import configparser
 import numpy as np
 from datetime import datetime,timedelta
-import nltk
 from nltk.tokenize import wordpunct_tokenize
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
