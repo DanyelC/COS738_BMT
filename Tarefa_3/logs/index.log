@@ -1,8 +1,0 @@
-2023-05-31 10:56:11,919 - Iniciando a criação da matriz de documentos.
-2023-05-31 10:56:32,950 - A matriz possui 7227 tokens e 781 documentos.
-2023-05-31 10:56:40,752 - Iniciando a geração do modelo com tf.
-2023-05-31 11:07:29,050 - Geração do modelo concluída. Tempo decorrido: 0:10:48.297528.
-2023-05-31 11:07:32,876 - Model saved.
-2023-05-31 11:07:32,891 - Iniciando operacao de captura das configuracões.
-2023-05-31 11:07:32,891 - Iniciando leitura do arquivo de configuracao.
-2023-05-31 11:07:32,904 - Arquivo de configuracao lido com sucesso.
