@@ -9,7 +9,15 @@ st.title("Recuperação de Informação - T3")
 
 st.write("Este trabalho tem como objetivo implementar um sistema de recuperação de informação, utilizando o modelo vetorial, para a base de dados da Tarefa 2. O sistema deve receber uma consulta e retornar os documentos mais relevantes para a consulta. Para isso, o sistema deve utilizar o modelo vetorial para representar os documentos e a consulta, e o cosseno do ângulo entre os vetores de consulta e documento para determinar a relevância dos documentos para a consulta. O sistema deve retornar os 10 documentos mais relevantes para a consulta, ordenados por ordem de relevância.")
 
-salvar_imagens = st.checkbox("Salvar imagens")
+cols =  st.columns(2)
+
+with cols[1]:
+    salvar_imagens = st.checkbox("Salvar imagens")
+with cols[0]:
+    novo_query = st.button("Nova query")
+
+if novo_query:
+    st.experimental_rerun()
 
 st._transparent_write("___")
 
@@ -399,18 +407,16 @@ def add_mean_ndcg(ndcg_table):
 ex_docs = get_expected_docs(st.session_state.expected)
 res_docs = get_results_docs(st.session_state.results)
 
-#st.text("Recall e Precision para resultados com stemming")
-with st.expander("Recall e Precision para resultados com stemming"):
-    st.table(pr_curve(ex_docs, res_docs, 90))
-
-
-
-
 success = False
 while not success:
     query_number_random = random.choice(list(ex_docs.keys()))
     if query_number_random in res_docs and query_number_random in ex_docs:
         success = True
+
+#st.text("Recall e Precision para resultados com stemming")
+with st.expander("Recall e Precision para resultados com stemming"):
+    st.table(pr_curve(ex_docs, res_docs, query_number_random))
+
 
 
 fig = plt.figure(figsize=(6, 6))
@@ -470,6 +476,7 @@ plt.yticks([0, 20, 40, 60, 80, 100])
 
 if salvar_imagens:
     plt.savefig("../data/11pontos-stemmer.png")
+
 
 col1, col2, col3 = st.columns([1, 4, 1])
 with col2:
