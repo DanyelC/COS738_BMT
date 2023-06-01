@@ -1,0 +1,16 @@
+2023-05-31 12:57:04,028 - Iniciando a criação da matriz de documentos.
+2023-05-31 12:57:21,907 - A matriz possui 5093 tokens e 781 documentos.
+2023-05-31 12:57:27,266 - Iniciando a geração do modelo com tf.
+2023-05-31 13:05:17,634 - Geração do modelo concluída. Tempo decorrido: 0:07:50.367438.
+2023-05-31 13:05:20,924 - Model saved.
+2023-05-31 13:05:20,939 - Iniciando operacao de captura das configuracões.
+2023-05-31 13:05:20,939 - Iniciando leitura do arquivo de configuracao.
+2023-05-31 13:05:20,942 - Arquivo de configuracao lido com sucesso.
+2023-05-31 13:27:27,191 - Iniciando a criação da matriz de documentos.
+2023-05-31 13:27:46,968 - A matriz possui 7227 tokens e 781 documentos.
+2023-05-31 13:27:54,530 - Iniciando a geração do modelo com tf.
+2023-05-31 13:38:53,820 - Geração do modelo concluída. Tempo decorrido: 0:10:59.289584.
+2023-05-31 13:38:58,891 - Model saved.
+2023-05-31 13:38:58,911 - Iniciando operacao de captura das configuracões.
+2023-05-31 13:38:58,912 - Iniciando leitura do arquivo de configuracao.
+2023-05-31 13:38:58,929 - Arquivo de configuracao lido com sucesso.

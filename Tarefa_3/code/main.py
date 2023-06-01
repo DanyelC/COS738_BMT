@@ -19,7 +19,7 @@ if __name__ == '__main__':
     else:
         type_tf = "tf"
         
-    logging.basicConfig(filename='../logs/log.txt', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    #logging.basicConfig(filename='../logs/log.txt', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
     logging.info(f'Iniciando execucao do programa em {datetime.now()}".')
 

@@ -1,0 +1,12 @@
+2023-05-31 13:05:21,639 - Rankeando consultas...
+2023-05-31 13:05:21,640 - Inserindo consultas no modelo.
+2023-05-31 13:05:29,075 - Consultas inseridas no modelo. Tempo decorrido: 0:00:07.434044
+2023-05-31 13:05:53,848 - Gerando o arquivo de resultados. Arquivo em formato CSV com 'QueryNumber; [posição no ranking, número do documento, valor de sim_cos]'.
+2023-05-31 13:05:53,968 - Arquivo de resultados criado.
+2023-05-31 13:05:53,968 - Fim da execucao do programa em 2023-05-31 13:05:53.968648".
+2023-05-31 13:38:59,805 - Rankeando consultas...
+2023-05-31 13:38:59,806 - Inserindo consultas no modelo.
+2023-05-31 13:39:02,853 - Consultas inseridas no modelo. Tempo decorrido: 0:00:03.047009
+2023-05-31 13:39:30,352 - Gerando o arquivo de resultados. Arquivo em formato CSV com 'QueryNumber; [posição no ranking, número do documento, valor de sim_cos]'.
+2023-05-31 13:39:30,637 - Arquivo de resultados criado.
+2023-05-31 13:39:30,637 - Fim da execucao do programa em 2023-05-31 13:39:30.637312".

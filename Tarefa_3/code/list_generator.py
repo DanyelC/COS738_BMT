@@ -1,6 +1,5 @@
 import logging
 import configparser
-import numpy as np
 from datetime import datetime,timedelta
 from nltk.tokenize import wordpunct_tokenize
 from nltk.corpus import stopwords
@@ -17,20 +16,30 @@ def get_conf(file='../config/GLI.cfg'):
     logging.basicConfig(filename='../logs/log.txt', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
     logging.info('Iniciando operacao de captura das configuracões.')
-
     try:
     # Ler arquivo de configuracão
         logging.info('Iniciando leitura do arquivo de configuracao.')
         cfg_parser = configparser.RawConfigParser()
         cfg_parser.readfp(open(file))
+
         try:
             if cfg_parser.options('STEMMER'):
                 stemmer = True
+
         except:
             stemmer = False
+
         files_to_read = cfg_parser.options('CONF')
         files_to_read = [cfg_parser.get('CONF', instruction) for instruction in files_to_read if instruction.startswith('LEIA'.lower())]
-        file_to_write = cfg_parser.get('CONF', 'ESCREVA')
+        if len(files_to_read) == 0:
+            files_to_read = cfg_parser.options('STEMMER')
+            files_to_read = [cfg_parser.get('STEMMER', instruction) for instruction in files_to_read if instruction.startswith('LEIA'.lower())]
+        
+        try:
+            file_to_write = cfg_parser.get('CONF', 'ESCREVA')
+        except:
+            file_to_write = cfg_parser.get('STEMMER', 'ESCREVA')
+        
 
         logging.info('Arquivo de configuracao lido com sucesso.')
         return files_to_read, file_to_write, stemmer
